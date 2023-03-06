@@ -25,7 +25,7 @@ route.post('/Changepass', (req, res) => {
 //              providing link to mail which will be containt only 10 min
 //             const token = jwt.sign(email,signature,{expiresIn:"10m"});
             const token = jwt.sign(email,signature);
-            const link =`http://localhost:5000/Reset/viewnewpasspage/${token}`
+            const link =`https://realbackend.onrender.com/Reset/viewnewpasspage/${token}`
             const rt = sendmail(email,link);
             res.send("sucess");
         }
@@ -59,7 +59,7 @@ route.get("/viewnewpasspage/:token",(req,resp)=>{
 //Update  
 route.post('/resetpassword', (req, res) => {
     const {email,password}=req.body;
-    User.updateOne({ email: email }, { $set: { password: password } }, { new: true }).then(() => res.redirect( 301,"http://localhost:3000/login")).catch(err =>  res.send(err));
+    User.updateOne({ email: email }, { $set: { password: password } }, { new: true }).then(() => res.redirect( 301,"https://owc-frontend.vercel.app/login")).catch(err =>  res.send(err));
 
 })
 
